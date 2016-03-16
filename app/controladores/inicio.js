@@ -27,7 +27,7 @@ angular.module('myApp')
             
         	if (result.data[0]==null)
             {
-
+                 $cookieStore.put('conectado', false);
                 $window.alert('Usuario o Clave no coinciden');
             }
             else

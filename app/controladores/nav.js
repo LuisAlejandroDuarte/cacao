@@ -7,16 +7,21 @@ angular.module('myApp')
   var usr = $cookieStore.get('myUser');
 
     if (usr != null) {     
-      $scope.usrConectado.estaConectado = true;
+      $scope.usrConectado.estaConectado = true;   
     }
     else
+    {
     	  $scope.usrConectado.estaConectado = false;
+          $cookieStore.put('conectado', false);
+    	  
+    }
 
 
 	$scope.onClicSalir = function()
 	{
-		 $cookieStore.remove('myUser');
+  		  $cookieStore.remove('myUser');
 		  $scope.usrConectado.estaConectado = false;
+	      $cookieStore.remove('conectado');
 		  $location.path("/inicio");
 
 	}    	

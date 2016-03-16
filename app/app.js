@@ -2,6 +2,23 @@
 
 angular.module('myApp', ['ngRoute','ngCookies','ngResource','jqwidgets'])
 
+.run(function($rootScope, $location, $cookieStore) {
+   $rootScope.$on('$routeChangeStart', function(event, next, current) {
+
+      if ($cookieStore.get('conectado')==false || $cookieStore.get('conectado') == null) 
+      {
+          $location.path('/inicio');
+      }
+      else 
+      {
+        if(next.templateUrl == 'views/inicio.html'  ) {
+           $location.path('/menu'); 
+         }
+      }
+
+   })
+})
+
 .config(['$routeProvider',function ($routeProvider){
     $routeProvider.when('/inicio', {
         templateUrl: 'views/inicio.html',
