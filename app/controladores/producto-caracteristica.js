@@ -100,10 +100,10 @@
 		  	SQL:"DELETE FROM ESC_CARA_PROD "
 		}	
 
-		 // Execute.SQL(datos).then(function(result) { 
+		 Execute.SQL(datos).then(function(result) { 
 
-		 // 	if (result.data[0].estado=="ok")
-		 // 	{
+		 	if (result.data[0].estado=="ok")
+		 	{
                 var insertSQL =[]
 		 		angular.forEach($scope.listProductoCaracteristica, function(value, key){
 		  		datos ={
@@ -116,19 +116,21 @@
 
                 Execute.SQLMulti(insertSQL).then(function(result) { 
 
-                        if (result.data[0].estado=="fallo")
+                        if (result.data[0]=="fallo")
                         {
                             $window.alert(result.data[0].msg);
                         }
+                        else
+                         $window.alert("Actualizado");   
 
                     });         	
-		 // 	}
-		 // 	else
-		 // 	{
-   //  			$window.alert(result.data[0].msg);
-		 // 	}
+		 	}
+		 	else
+		 	{
+    			$window.alert(result.data[0].msg);
+		 	}
 
-		 // });
+		 });
 
 
 
